@@ -1,8 +1,6 @@
 import { Context } from "https://edge.netlify.com";
-import fs from 'fs';
-import path from 'path';
+import wasmCode from './rust_rewriter/target/wasm32-wasi/debug/rust_rewriter.wasm';
 
-const wasmCode = fs.readFileSync(path.combine(__dirname,"rust_rewriter.wasm"));
 const wasmModule = new WebAssembly.Module(wasmCode);
 const wasmInstance = new WebAssembly.Instance(wasmModule);
 const greet = wasmInstance.exports.greet as CallableFunction;
