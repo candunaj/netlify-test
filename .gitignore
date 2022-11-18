@@ -1,6 +1,5 @@
 netlify/rust-rewriter/target/*.*
 netlify/rust-rewriter/target/debug
-netlify/rust-rewriter/target/release
-netlify/rust-rewriter/target/wasm32-unknown-unknown/*.*
-netlify/rust-rewriter/target/wasm32-unknown-unknown/release/*
-!netlify/rust-rewriter/target/wasm32-unknown-unknown/release/rust_rewriter.wasm
+netlify/rust-rewriter/target/wasm32-wasi/*.*
+netlify/rust-rewriter/target/wasm32-wasi/debug/*
+!netlify/rust-rewriter/target/wasm32-wasi/debug/rust_rewriter.wasm

@@ -1,4 +1,11 @@
 import { Context } from "https://edge.netlify.com";
+import fs from 'fs';
+import path from 'path';
+
+const wasmCode = fs.readFileSync(path.combine(__dirname,"rust_rewriter.wasm"));
+const wasmModule = new WebAssembly.Module(wasmCode);
+const wasmInstance = new WebAssembly.Instance(wasmModule);
+const greet = wasmInstance.exports.greet as CallableFunction;
 
 export default async (request: Request, context: Context) => {
   const url = new URL(request.url);
@@ -10,5 +17,6 @@ export default async (request: Request, context: Context) => {
 
   const response = await context.next();
   const text = await response.text();
-  return new Response(text.toUpperCase(), response);
+  const greeting = greet("Stan");
+  return new Response(greeting, response);
 };
